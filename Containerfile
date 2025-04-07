@@ -1,5 +1,7 @@
 # Use an official OpenJDK runtime as a base image.
-FROM openjdk:11-jre-slim
+FROM openjdk:17-jdk-slim
+COPY target/Capstone-0.0.1-SNAPSHOT.jar /app/Capstone.jar
+CMD ["java", "-jar", "/app/Capstone.jar"]
 
 # Add the application's JAR file to the container.
 COPY target/Capstone-0.0.1-SNAPSHOT.jar /app/Capstone.jar
