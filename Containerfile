@@ -1,13 +1,13 @@
-# Use an official OpenJDK runtime as a base image.
+# Stage 1: Build the application
+FROM maven:3.8.5-openjdk-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Stage 2: Run the application
 FROM openjdk:17-jdk-slim
-COPY target/Capstone-0.0.1-SNAPSHOT.jar /app/Capstone.jar
-CMD ["java", "-jar", "/app/Capstone.jar"]
-
-# Add the application's JAR file to the container.
-COPY target/Capstone-0.0.1-SNAPSHOT.jar /app/Capstone.jar
-
-# Expose the port the app runs on (change if necessary).
+WORKDIR /app
+COPY --from=build /app/target/Capstone-0.0.1-SNAPSHOT.jar Capstone.jar
 EXPOSE 8080
-
-# Run the JAR file.
-ENTRYPOINT ["java", "-jar", "/app/Capstone.jar"]
+ENTRYPOINT ["java", "-jar", "Capstone.jar"]
