@@ -1,5 +1,6 @@
 package com.example.Capstone.task.model;
 
+import com.example.Capstone.category.Model.Category;
 import com.example.Capstone.uuidGeneratorV7.GeneratedUuidV7;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -37,6 +38,10 @@ public class Task {
 
     @Column(name = "Longest_work_stretch")
     private Integer longest_work_stretch;
+
+    @ManyToOne()
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @Column(name = "description")
     private String description;
