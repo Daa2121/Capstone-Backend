@@ -1,4 +1,4 @@
-package com.example.Capstone.category.Model;
+package com.example.Capstone.category.model;
 
 import lombok.Data;
 

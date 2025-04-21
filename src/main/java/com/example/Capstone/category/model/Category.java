@@ -1,4 +1,4 @@
-package com.example.Capstone.category.Model;
+package com.example.Capstone.category.model;
 
 import com.example.Capstone.uuidGeneratorV7.GeneratedUuidV7;
 import jakarta.persistence.Column;
