@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 public class DeleteCategoryService implements Command<UUID, Void> {
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public DeleteCategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

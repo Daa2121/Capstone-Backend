@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class UpdateCategoryService implements Command<UpdateCategoryCommand, CategoryDTO> {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public UpdateCategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

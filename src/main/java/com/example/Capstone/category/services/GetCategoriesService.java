@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class GetCategoriesService implements Query<Void, List<CategoryDTO>> {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public GetCategoriesService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
