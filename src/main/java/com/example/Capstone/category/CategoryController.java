@@ -2,9 +2,8 @@ package com.example.Capstone.category;
 
 import com.example.Capstone.category.model.Category;
 import com.example.Capstone.category.model.CategoryDTO;
-import com.example.Capstone.category.services.CreateCategoryService;
-import com.example.Capstone.category.services.GetCategoriesService;
-import com.example.Capstone.category.services.GetCategoryService;
+import com.example.Capstone.category.model.UpdateCategoryCommand;
+import com.example.Capstone.category.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +16,22 @@ public class CategoryController {
     private final CreateCategoryService createCategoryService;
     private final GetCategoriesService getCategoriesService;
     private final GetCategoryService getCategoryService;
+    private final SearchCategoryService searchCategoryService;
+    private final UpdateCategoryService updateCategoryService;
+    private final DeleteCategoryService deleteCategoryService;
 
-    public CategoryController(CreateCategoryService createCategoryService, GetCategoriesService getCategoriesService, GetCategoryService getCategoryService) {
+    public CategoryController(CreateCategoryService createCategoryService,
+                              GetCategoriesService getCategoriesService,
+                              GetCategoryService getCategoryService,
+                              SearchCategoryService searchCategoryService,
+                              UpdateCategoryService updateCategoryService,
+                              DeleteCategoryService deleteCategoryService) {
         this.createCategoryService = createCategoryService;
         this.getCategoriesService = getCategoriesService;
         this.getCategoryService = getCategoryService;
+        this.searchCategoryService = searchCategoryService;
+        this.updateCategoryService = updateCategoryService;
+        this.deleteCategoryService = deleteCategoryService;
     }
 
     @PostMapping("/category")
@@ -37,5 +47,20 @@ public class CategoryController {
     @GetMapping("/category/{id}")
     public  ResponseEntity<CategoryDTO> getCategoryByID(@PathVariable UUID id){
         return getCategoryService.execute(id);
+    }
+
+    @GetMapping("/category/search")
+    public ResponseEntity<List<CategoryDTO>> searchCategoryByName(@RequestParam String name){
+        return searchCategoryService.execute(name);
+    }
+
+    @PutMapping("/category/{id}")
+    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable UUID id, @RequestBody Category category){
+        return updateCategoryService.execute(new UpdateCategoryCommand(id, category));
+    }
+
+    @DeleteMapping("/category/{id}")
+    public  ResponseEntity<Void> deleteCategory(@PathVariable UUID id){
+        return deleteCategoryService.execute(id);
     }
 }
