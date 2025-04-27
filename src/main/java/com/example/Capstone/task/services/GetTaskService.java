@@ -1,6 +1,7 @@
 package com.example.Capstone.task.services;
 
 import com.example.Capstone.Query;
+import com.example.Capstone.task.TaskRepository;
 import com.example.Capstone.task.model.Task;
 import com.example.Capstone.task.model.TaskDTO;
 import org.springframework.http.ResponseEntity;

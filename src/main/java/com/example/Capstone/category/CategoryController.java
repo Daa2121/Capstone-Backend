@@ -4,6 +4,7 @@ import com.example.Capstone.category.model.Category;
 import com.example.Capstone.category.model.CategoryDTO;
 import com.example.Capstone.category.model.UpdateCategoryCommand;
 import com.example.Capstone.category.services.*;
+import com.example.Capstone.task.model.TaskDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ public class CategoryController {
     private final CreateCategoryService createCategoryService;
     private final GetCategoriesService getCategoriesService;
     private final GetCategoryService getCategoryService;
+    private final GetTasksInCategoryService getTasksInCategoryService;
     private final SearchCategoryService searchCategoryService;
     private final UpdateCategoryService updateCategoryService;
     private final DeleteCategoryService deleteCategoryService;
@@ -23,12 +25,14 @@ public class CategoryController {
     public CategoryController(CreateCategoryService createCategoryService,
                               GetCategoriesService getCategoriesService,
                               GetCategoryService getCategoryService,
+                              GetTasksInCategoryService getTasksInCategoryService,
                               SearchCategoryService searchCategoryService,
                               UpdateCategoryService updateCategoryService,
                               DeleteCategoryService deleteCategoryService) {
         this.createCategoryService = createCategoryService;
         this.getCategoriesService = getCategoriesService;
         this.getCategoryService = getCategoryService;
+        this.getTasksInCategoryService = getTasksInCategoryService;
         this.searchCategoryService = searchCategoryService;
         this.updateCategoryService = updateCategoryService;
         this.deleteCategoryService = deleteCategoryService;
@@ -47,6 +51,11 @@ public class CategoryController {
     @GetMapping("/category/{id}")
     public  ResponseEntity<CategoryDTO> getCategoryByID(@PathVariable UUID id){
         return getCategoryService.execute(id);
+    }
+
+    @GetMapping("/category/{id}/tasks")
+    public ResponseEntity<List<TaskDTO>> getTasksInCategoryByID(@PathVariable UUID id){
+        return getTasksInCategoryService.execute(id);
     }
 
     @GetMapping("/category/search")

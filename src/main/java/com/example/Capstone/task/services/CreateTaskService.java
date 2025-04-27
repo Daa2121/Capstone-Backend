@@ -3,6 +3,7 @@ package com.example.Capstone.task.services;
 import com.example.Capstone.Command;
 import com.example.Capstone.category.model.Category;
 import com.example.Capstone.category.CategoryRepository;
+import com.example.Capstone.task.TaskRepository;
 import com.example.Capstone.task.model.Task;
 import com.example.Capstone.task.model.TaskDTO;
 import org.springframework.http.HttpStatus;

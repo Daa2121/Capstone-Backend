@@ -5,7 +5,6 @@ import com.example.Capstone.task.model.TaskDTO;
 import com.example.Capstone.task.services.CreateTaskService;
 import com.example.Capstone.task.services.GetTaskService;
 import com.example.Capstone.task.services.GetTasksService;
-import com.example.Capstone.task.services.TaskRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
