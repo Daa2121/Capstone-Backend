@@ -15,6 +15,7 @@ public class TaskDTO {
     private Integer end_schedule;
     private Integer breaks;
     private Integer longest_work_stretch;
+    private String category;
     private String description;
     private Boolean in_focus_list;
     private Boolean is_selected;
@@ -24,6 +25,7 @@ public class TaskDTO {
         this.in_focus_list = getIn_focus_list();
         this.description = task.getDescription();
         this.longest_work_stretch = task.getLongest_work_stretch();
+        this.category = task.getCategory() != null ? task.getCategory().getName() : null;
         this.breaks = task.getBreaks();
         this.end_schedule = task.getEnd_schedule();
         this.start_schedule = task.getStart_schedule();
