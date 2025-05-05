@@ -3,10 +3,7 @@ package com.example.Capstone.task;
 import com.example.Capstone.task.model.Task;
 import com.example.Capstone.task.model.TaskDTO;
 import com.example.Capstone.task.model.UpdateTaskCommand;
-import com.example.Capstone.task.services.CreateTaskService;
-import com.example.Capstone.task.services.GetTaskService;
-import com.example.Capstone.task.services.GetTasksService;
-import com.example.Capstone.task.services.UpdateTaskService;
+import com.example.Capstone.task.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,15 +16,18 @@ public class TaskController {
     private final GetTasksService getTasksService;
     private final GetTaskService getTaskService;
     private final UpdateTaskService updateTaskService;
+    private final DeleteTaskService deleteTaskService;
 
    public TaskController(CreateTaskService createTaskService,
                          GetTasksService getTasksService,
                          GetTaskService getTaskService,
-                         UpdateTaskService updateTaskService ) {
+                         UpdateTaskService updateTaskService,
+                         DeleteTaskService deleteTaskService) {
        this.createTaskService = createTaskService;
        this.getTasksService = getTasksService;
        this.getTaskService = getTaskService;
        this.updateTaskService = updateTaskService;
+       this.deleteTaskService = deleteTaskService;
     }
 
     @GetMapping("/test")
@@ -53,6 +53,11 @@ public class TaskController {
     @PutMapping("/task/{id}")
     public ResponseEntity<TaskDTO> updateTask(@PathVariable UUID id, @RequestBody Task task){
        return updateTaskService.execute(new UpdateTaskCommand(id, task));
+    }
+
+    @DeleteMapping("/task/{id}")
+    public  ResponseEntity<Void> deleteTask(@PathVariable UUID id){
+       return deleteTaskService.execute(id);
     }
 
 
