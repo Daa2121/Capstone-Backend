@@ -9,4 +9,8 @@ import java.util.UUID;
 public interface TaskRepository extends JpaRepository<Task, UUID> {
     // SELECT * FROM task WHERE category_id = :categoryId
     List<Task> findAllByCategoryId(UUID categoryId);
+
+    boolean existsByCategoryId(UUID categoryId);
 }
+
+

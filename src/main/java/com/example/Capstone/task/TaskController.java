@@ -30,11 +30,6 @@ public class TaskController {
        this.deleteTaskService = deleteTaskService;
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> Test() {
-        return ResponseEntity.ok().body("Success!");
-    }
-
     @PostMapping("/task")
     public  ResponseEntity<TaskDTO> createTask(@RequestBody Task task){
        return createTaskService.execute(task);
@@ -59,7 +54,5 @@ public class TaskController {
     public  ResponseEntity<Void> deleteTask(@PathVariable UUID id){
        return deleteTaskService.execute(id);
     }
-
-
 
 }
